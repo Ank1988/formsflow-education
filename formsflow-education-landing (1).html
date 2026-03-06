@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>formsflow.ai for Education | Automate Campus Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --off-white: #F7F8FA;
+  --light-grey: #EEF0F4;
+  --mid-grey: #C8CDD8;
+  --text: #1A1D2E;
+  --muted: #6B7280;
+  --teal: #00B5A3;
+  --teal-dark: #008C7D;
+  --teal-light: #E6F8F6;
+  --blue: #1B6EF3;
+  --blue-light: #EEF4FF;
+  --amber: #F59E0B;
+  --amber-light: #FEF3C7;
+  --rose: #EF4444;
+  --rose-light: #FEE2E2;
+  --border: #E5E7EB;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 6vw;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-box {
+  width: 36px; height: 36px;
+  background: var(--teal);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900; font-size: 15px;
+  color: white; letter-spacing: -0.5px;
+}
+.logo-name { font-weight: 700; font-size: 16px; color: var(--text); }
+.logo-name span { color: var(--teal); }
+
+.nav-badge {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 100px;
+  letter-spacing: 0.04em;
+}
+
+.nav-cta {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.btn-ghost {
+  padding: 9px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+.btn-primary {
+  padding: 10px 22px;
+  background: var(--teal);
+  border: none; border-radius: 8px;
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.15s, box-shadow 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary:hover { background: var(--teal-dark); box-shadow: 0 4px 16px rgba(0,181,163,0.3); }
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--white);
+  padding: 88px 6vw 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 640px;
+}
+
+/* Subtle grid bg */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.45;
+}
+
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px; margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-light);
+  border: 1px solid rgba(0,181,163,0.25);
+  color: var(--teal-dark);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 100px;
+  margin-bottom: 22px;
+  animation: slideUp 0.5s ease both;
+}
+
+.hero-eyebrow-dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; }
+
+h1.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+  animation: slideUp 0.5s 0.08s ease both;
+}
+
+h1.hero-title em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.hero-sub {
+  font-size: 17px; color: var(--muted);
+  line-height: 1.7;
+  max-width: 460px;
+  margin-bottom: 36px;
+  animation: slideUp 0.5s 0.16s ease both;
+}
+
+.hero-actions {
+  display: flex; align-items: center; gap: 14px;
+  animation: slideUp 0.5s 0.22s ease both;
+  flex-wrap: wrap;
+}
+
+.btn-hero {
+  padding: 14px 28px;
+  background: var(--teal);
+  border: none; border-radius: 10px;
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.btn-hero:hover { background: var(--teal-dark); box-shadow: 0 8px 24px rgba(0,181,163,0.35); transform: translateY(-1px); }
+
+.btn-hero-outline {
+  padding: 13px 26px;
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  transition: border-color 0.15s;
+}
+.btn-hero-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+.hero-trust {
+  display: flex; align-items: center; gap: 20px;
+  margin-top: 28px;
+  animation: slideUp 0.5s 0.3s ease both;
+}
+
+.trust-chip {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--muted); font-weight: 500;
+}
+.trust-chip-icon { font-size: 14px; }
+
+/* Hero visual */
+.hero-visual {
+  animation: slideUp 0.6s 0.1s ease both;
+}
+
+.hero-card-stack { position: relative; }
+
+.hero-main-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-title { font-weight: 700; font-size: 15px; color: var(--text); }
+.card-status {
+  background: var(--teal-light); color: var(--teal-dark);
+  font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+}
+
+.workflow-steps { display: flex; flex-direction: column; gap: 10px; }
+
+.wf-step {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+}
+
+.wf-step.done { background: var(--teal-light); color: var(--teal-dark); }
+.wf-step.active { background: var(--blue-light); color: var(--blue); border: 1.5px solid rgba(27,110,243,0.2); }
+.wf-step.pending { background: var(--off-white); color: var(--muted); }
+.wf-step-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.wf-step.done .wf-step-dot { background: var(--teal); }
+.wf-step.active .wf-step-dot { background: var(--blue); }
+.wf-step.pending .wf-step-dot { background: var(--mid-grey); }
+
+.hero-float-card {
+  position: absolute;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: var(--shadow-md);
+  font-size: 13px;
+}
+
+.hero-float-1 { top: -24px; right: -20px; }
+.hero-float-2 { bottom: -20px; left: -20px; }
+
+.float-label { font-size: 11px; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+.float-val { font-weight: 700; font-size: 20px; color: var(--text); }
+.float-sub { font-size: 11px; color: var(--teal); font-weight: 600; }
+
+/* ===== SEGMENT TABS ===== */
+.segment-section {
+  background: var(--off-white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 6vw;
+}
+
+.segment-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+
+.seg-label { font-size: 13px; font-weight: 600; color: var(--muted); margin-right: 4px; }
+
+.seg-tab {
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border);
+  background: var(--white); color: var(--muted);
+  transition: all 0.15s;
+}
+.seg-tab:hover { border-color: var(--teal); color: var(--teal); }
+.seg-tab.active {
+  background: var(--teal); border-color: var(--teal);
+  color: white; box-shadow: 0 2px 8px rgba(0,181,163,0.25);
+}
+
+/* ===== VALUE CHAIN ===== */
+.section { padding: 80px 6vw; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--teal-dark);
+  margin-bottom: 14px;
+}
+
+h2.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 900; line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+h2.section-title em { font-style: italic; color: var(--teal); }
+
+.section-sub { font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.65; margin-bottom: 52px; }
+
+/* Value chain visual */
+.value-chain {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 56px;
+  scrollbar-width: thin;
+}
+
+.vc-node {
+  flex: 1;
+  min-width: 150px;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+
+.vc-node:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -14px; top: 28px;
+  font-size: 18px; color: var(--mid-grey);
+  z-index: 1;
+}
+
+.vc-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 12px;
+  border: 2px solid var(--border);
+  background: var(--white);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.vc-node.active .vc-circle {
+  background: var(--teal); border-color: var(--teal);
+  box-shadow: 0 4px 16px rgba(0,181,163,0.3);
+}
+
+.vc-node-label {
+  font-size: 12px; font-weight: 600; text-align: center;
+  color: var(--muted); line-height: 1.3;
+}
+
+.vc-node.active .vc-node-label { color: var(--teal-dark); }
+
+/* ===== PROBLEM→SOLUTION grid ===== */
+.ps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.ps-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--white);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.ps-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+.ps-card-top {
+  padding: 28px 28px 20px;
+}
+
+.ps-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 16px;
+}
+
+.ps-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.ps-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+.ps-card-divider { height: 1px; background: var(--border); }
+
+.ps-card-bottom {
+  padding: 20px 28px 24px;
+  background: var(--off-white);
+}
+
+.ps-card-bottom-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--teal-dark);
+  margin-bottom: 10px;
+}
+
+.ps-feature-list { list-style: none; }
+.ps-feature-list li {
+  font-size: 13px; color: var(--text);
+  padding: 4px 0;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.ps-feature-list li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+/* ===== SEGMENT PANELS ===== */
+.seg-panel { display: none; }
+.seg-panel.active { display: block; }
+
+/* ===== FEATURES GRID ===== */
+.features-bg {
+  background: var(--off-white);
+  border-top: 1px solid var(--border);
+  padding: 80px 6vw;
+}
+
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 52px;
+}
+
+.feat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.feat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.feat-icon {
+  width: 44px; height: 44px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 16px;
+}
+
+.feat-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.feat-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+.feat-tag {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px; font-weight: 600;
+  padding: 2px 9px; border-radius: 100px;
+  letter-spacing: 0.04em;
+}
+.feat-tag.premium { background: var(--amber-light); color: #92400E; }
+.feat-tag.core { background: var(--teal-light); color: var(--teal-dark); }
+
+/* ===== METRICS BAND ===== */
+.metrics-band {
+  background: var(--teal);
+  padding: 56px 6vw;
+}
+
+.metrics-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.metric-item { text-align: center; }
+.metric-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px; font-weight: 900;
+  color: white; line-height: 1;
+  margin-bottom: 6px;
+}
+.metric-label { font-size: 14px; color: rgba(255,255,255,0.75); font-weight: 500; }
+
+/* ===== HOW IT WORKS ===== */
+.steps-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px; margin-top: 52px;
+  position: relative;
+}
+
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 36px; left: 10%; right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  opacity: 0.25;
+}
+
+.step-card {
+  text-align: center;
+  position: relative;
+}
+
+.step-num {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900; color: var(--teal);
+  margin: 0 auto 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.step-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.step-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ===== FORM CTA ===== */
+.cta-section {
+  background: var(--white);
+  padding: 80px 6vw;
+  border-top: 1px solid var(--border);
+}
+
+.cta-inner {
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: start;
+}
+
+.cta-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px; font-weight: 900;
+  line-height: 1.15; margin-bottom: 16px;
+}
+.cta-left h2 em { font-style: italic; color: var(--teal); }
+
+.cta-left p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
+
+.cta-bullets { list-style: none; }
+.cta-bullets li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--text); padding: 5px 0;
+  font-weight: 500;
+}
+.cta-bullets li::before { content: '✓'; color: var(--teal); font-weight: 700; }
+
+/* Form */
+.trial-form {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.trial-form h3 {
+  font-size: 18px; font-weight: 700; margin-bottom: 6px;
+}
+.trial-form .form-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-field { margin-bottom: 12px; }
+
+.form-field label {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+
+.form-field input, .form-field select {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; color: var(--text);
+  outline: none; appearance: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-field input::placeholder { color: var(--mid-grey); }
+.form-field input:focus, .form-field select:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0,181,163,0.12);
+}
+
+.form-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  cursor: pointer;
+}
+
+.form-submit {
+  width: 100%; padding: 14px;
+  background: var(--teal); border: none; border-radius: 10px;
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; margin-top: 4px;
+  transition: all 0.2s;
+}
+.form-submit:hover { background: var(--teal-dark); box-shadow: 0 6px 20px rgba(0,181,163,0.35); }
+
+.form-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 12px; }
+.form-note a { color: var(--teal); text-decoration: none; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--text);
+  padding: 48px 6vw 32px;
+  color: rgba(255,255,255,0.55);
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-logo { display: flex; align-items: center; gap: 8px; }
+.footer-logo-box {
+  width: 30px; height: 30px;
+  background: var(--teal); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: 12px; color: white;
+}
+.footer-brand { font-size: 14px; font-weight: 600; color: white; }
+.footer-copy { font-size: 12px; }
+
+/* ===== ANIMATION ===== */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .feat-grid { grid-template-columns: 1fr 1fr; }
+  .metrics-inner { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-inner { grid-template-columns: 1fr; }
+  .steps-grid::before { display: none; }
+}
+@media (max-width: 600px) {
+  .feat-grid, .ps-grid { grid-template-columns: 1fr; }
+  .metrics-inner, .steps-grid { grid-template-columns: 1fr 1fr; }
+  .nav-cta .btn-ghost { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://formsflow.ai" class="nav-logo">
+    <div class="logo-box">ff</div>
+    <span class="logo-name">formsflow<span>.ai</span></span>
+  </a>
+  <span class="nav-badge">🎓 Education Edition</span>
+  <div class="nav-cta">
+    <a href="https://formsflow.ai/features/" class="btn-ghost">Features</a>
+    <a href="#trial-form" class="btn-primary">Start Free Trial →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        Built for K-12, Colleges & Universities
+      </div>
+      <h1 class="hero-title">
+        Transform how your<br>
+        institution <em>operates</em><br>
+        — end-to-end.
+      </h1>
+      <p class="hero-sub">
+        From student admissions to alumni relations, formsflow.ai automates every form-driven process across your campus. No code needed. AI-powered. Compliant by design.
+      </p>
+      <div class="hero-actions">
+        <a href="#trial-form" class="btn-hero">Start 30-Day Free Trial →</a>
+        <a href="#how-it-works" class="btn-hero-outline">See how it works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-chip"><span class="trust-chip-icon">🔒</span> No credit card required</div>
+        <div class="trust-chip"><span class="trust-chip-icon">⚡</span> Live in 24 hours</div>
+        <div class="trust-chip"><span class="trust-chip-icon">🌍</span> FERPA-ready</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <!-- Float 1 -->
+        <div class="hero-float-card hero-float-1">
+          <div class="float-label">Applications processed</div>
+          <div class="float-val">2,847</div>
+          <div class="float-sub">↑ 34% vs last semester</div>
+        </div>
+
+        <!-- Main card -->
+        <div class="hero-main-card">
+          <div class="card-header-row">
+            <div class="card-title">🎓 Admission Workflow — Fall 2025</div>
+            <div class="card-status">Live</div>
+          </div>
+          <div class="workflow-steps">
+            <div class="wf-step done"><div class="wf-step-dot"></div>Application submitted & validated</div>
+            <div class="wf-step done"><div class="wf-step-dot"></div>Documents verified by admissions</div>
+            <div class="wf-step active"><div class="wf-step-dot"></div>Counsellor review in progress…</div>
+            <div class="wf-step pending"><div class="wf-step-dot"></div>Financial aid assessment</div>
+            <div class="wf-step pending"><div class="wf-step-dot"></div>Offer letter issued</div>
+            <div class="wf-step pending"><div class="wf-step-dot"></div>Enrollment confirmation</div>
+          </div>
+        </div>
+
+        <!-- Float 2 -->
+        <div class="hero-float-card hero-float-2">
+          <div class="float-label">Avg. processing time</div>
+          <div class="float-val">4.2 days</div>
+          <div class="float-sub">↓ Was 18 days manually</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENT TABS -->
+<div class="segment-section">
+  <div class="segment-inner">
+    <span class="seg-label">I represent:</span>
+    <button class="seg-tab active" onclick="switchSegment('k12', this)">🏫 K-12 Schools</button>
+    <button class="seg-tab" onclick="switchSegment('higher', this)">🎓 Universities & Colleges</button>
+    <button class="seg-tab" onclick="switchSegment('admin', this)">🏛️ School District / Board</button>
+  </div>
+</div>
+
+<!-- EDUCATION VALUE CHAIN -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">📊 Education Business Value Chain</div>
+    <h2 class="section-title reveal">Every touchpoint in your institution.<br><em>Automated.</em></h2>
+    <p class="section-sub reveal">formsflow.ai maps to the complete education value chain — from the moment a prospective student discovers your institution to the day they become a proud alumnus.</p>
+
+    <!-- Value chain visual -->
+    <div class="value-chain reveal">
+      <div class="vc-node active">
+        <div class="vc-circle">🔍</div>
+        <div class="vc-node-label">Outreach &<br>Enquiry</div>
+      </div>
+      <div class="vc-node">
+        <div class="vc-circle">📋</div>
+        <div class="vc-node-label">Admissions &<br>Enrollment</div>
+      </div>
+      <div class="vc-node">
+        <div class="vc-circle">💰</div>
+        <div class="vc-node-label">Financial Aid &<br>Scholarships</div>
+      </div>
+      <div class="vc-node">
+        <div class="vc-circle">📚</div>
+        <div class="vc-node-label">Academic<br>Operations</div>
+      </div>
+      <div class="vc-node">
+        <div class="vc-circle">🏥</div>
+        <div class="vc-node-label">Student<br>Welfare</div>
+      </div>
+      <div class="vc-node">
+        <div class="vc-circle">🤝</div>
+        <div class="vc-node-label">HR &<br>Faculty</div>
+      </div>
+      <div class="vc-node">
+        <div class="vc-circle">🎓</div>
+        <div class="vc-node-label">Alumni &<br>Development</div>
+      </div>
+    </div>
+
+    <!-- K-12 Panel -->
+    <div class="seg-panel active" id="panel-k12">
+      <div style="margin-bottom:28px;">
+        <div class="section-eyebrow" style="font-size:11px">K-12 Use Cases</div>
+        <p style="font-size:15px;color:var(--muted)">Built for school administrators, principals, and district IT teams managing students from admission through graduation.</p>
+      </div>
+      <div class="ps-grid">
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--teal-light)">📋</div>
+            <h3>Student Admissions & Registration</h3>
+            <p>Manual paper forms cause delays and data errors at peak enrollment season. Staff spend weeks processing applications by hand.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Online multilingual admission forms embedded on your school website</li>
+              <li>BPMN workflows routing applications to reviewers automatically</li>
+              <li>Real-time status tracking for parents and guardians</li>
+              <li>Auto-generated PDF records for each accepted student</li>
+              <li>Analytics dashboard showing enrollment trends by grade, zone, and demographics</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--blue-light)">💰</div>
+            <h3>Fee Waivers & Financial Aid</h3>
+            <p>Low-income families struggle with opaque, paper-heavy fee waiver processes — leading to delays and families missing out on rightful benefits.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>DMN rules engine to auto-determine eligibility criteria</li>
+              <li>Secure document upload (income proof, certificates)</li>
+              <li>Multi-stage approval workflow across principal, finance, and district</li>
+              <li>Automated notification to families on approval/rejection</li>
+              <li>Compliance audit trail for government reporting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--amber-light)">🏥</div>
+            <h3>Student Health & Incident Records</h3>
+            <p>Health events and disciplinary incidents tracked on paper create compliance risks and slow emergency response.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Mobile-first incident report forms for staff</li>
+              <li>Automated escalation to nurse, counselor, and principal</li>
+              <li>Role-based access ensuring FERPA-compliant data handling</li>
+              <li>Parent notification workflows with read-receipts</li>
+              <li>Aggregate health analytics for district reporting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--rose-light)">🤝</div>
+            <h3>Teacher Recruitment & HR</h3>
+            <p>School HR teams manage hiring, background checks, and onboarding across disparate spreadsheets and email threads.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Structured teacher application forms with credential upload</li>
+              <li>Interview scheduling and evaluation workflows</li>
+              <li>Background verification checklist with status tracking</li>
+              <li>Digital onboarding packet with e-signature support</li>
+              <li>Contract renewal reminders and leave management forms</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Higher Ed Panel -->
+    <div class="seg-panel" id="panel-higher">
+      <div style="margin-bottom:28px;">
+        <div class="section-eyebrow" style="font-size:11px">University & College Use Cases</div>
+        <p style="font-size:15px;color:var(--muted)">Serving registrars, department heads, financial aid offices, and student services teams at scale.</p>
+      </div>
+      <div class="ps-grid">
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--teal-light)">🎓</div>
+            <h3>Undergraduate & Postgrad Admissions</h3>
+            <p>High application volumes overwhelm manual review processes. Inconsistent workflows cause applicant drop-off and delayed decisions.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Form bundles for undergraduate, graduate, and international applicants</li>
+              <li>Flow-E AI assists applicants in completing complex forms correctly</li>
+              <li>Multi-department review workflows with SLA tracking</li>
+              <li>Integration with SIS/CRM for seamless data transfer</li>
+              <li>Offer letter generation and e-signature confirmation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--blue-light)">🔬</div>
+            <h3>Research Grants & Ethics Review</h3>
+            <p>IRB approvals and grant applications involve complex multi-step reviews across committees, causing months-long bottlenecks.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Structured grant application forms with budget and milestone fields</li>
+              <li>Parallel review workflows across ethics board members</li>
+              <li>DMN-based eligibility and compliance checks</li>
+              <li>Version-controlled form submissions with audit history</li>
+              <li>Automated reporting to funding agencies</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--amber-light)">📊</div>
+            <h3>Academic Appeals & Grievances</h3>
+            <p>Students face opaque, inconsistent processes for grade appeals and academic grievances — often unaware of timelines or outcomes.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Structured appeal forms with supporting document upload</li>
+              <li>Automated routing to faculty, department head, and dean</li>
+              <li>Real-time status portal for students to track progress</li>
+              <li>Configurable decision outcomes with auto-notifications</li>
+              <li>Analytics on appeals patterns for academic policy improvement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--rose-light)">🌍</div>
+            <h3>International Student Services</h3>
+            <p>Visa letters, I-20s, and immigration compliance generate high-volume manual paperwork for international offices.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Multilingual forms in 6+ languages including Mandarin and Spanish</li>
+              <li>Document verification workflows for visa and enrollment status</li>
+              <li>Automated I-20 and enrollment letter generation</li>
+              <li>DSO/advisor task queues with priority tracking</li>
+              <li>Compliance audit logs for SEVIS reporting</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- District Panel -->
+    <div class="seg-panel" id="panel-admin">
+      <div style="margin-bottom:28px;">
+        <div class="section-eyebrow" style="font-size:11px">District / Board Use Cases</div>
+        <p style="font-size:15px;color:var(--muted)">Multi-tenant governance across dozens of schools — standardized processes, centralized reporting.</p>
+      </div>
+      <div class="ps-grid">
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--teal-light)">🏛️</div>
+            <h3>District-Wide Policy Compliance</h3>
+            <p>Standardizing processes across 20–200+ schools is nearly impossible without a centralized, governed platform.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Multi-tenancy: each school gets its own branded workspace</li>
+              <li>Central form library with district-approved templates</li>
+              <li>Role-based access: principals manage locally, admins govern centrally</li>
+              <li>District-wide analytics aggregated across all schools</li>
+              <li>SOC 2-ready infrastructure with full audit trails</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ps-card reveal">
+          <div class="ps-card-top">
+            <div class="ps-card-icon" style="background:var(--blue-light)">📝</div>
+            <h3>Title I & Grant Reporting</h3>
+            <p>Federal and state grant compliance requires consistent data collection and reporting across every school in the district.</p>
+          </div>
+          <div class="ps-card-divider"></div>
+          <div class="ps-card-bottom">
+            <div class="ps-card-bottom-label">formsflow.ai solves this with:</div>
+            <ul class="ps-feature-list">
+              <li>Standardized data collection forms deployed district-wide</li>
+              <li>Automated aggregation and reporting dashboards</li>
+              <li>Deadline tracking and automated reminders to school leads</li>
+              <li>On-premise or private cloud hosting for sensitive data</li>
+              <li>Export to PDF and CSV for regulatory submission</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics-band">
+  <div class="metrics-inner">
+    <div class="metric-item reveal">
+      <div class="metric-num">76%</div>
+      <div class="metric-label">Reduction in processing time for admissions</div>
+    </div>
+    <div class="metric-item reveal">
+      <div class="metric-num">90%</div>
+      <div class="metric-label">Less development cost vs custom-built solutions</div>
+    </div>
+    <div class="metric-item reveal">
+      <div class="metric-num">500+</div>
+      <div class="metric-label">Organizations across government & education</div>
+    </div>
+    <div class="metric-item reveal">
+      <div class="metric-num">24hr</div>
+      <div class="metric-label">Average time to go live from sign-up</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features-bg">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Platform Features</div>
+    <h2 class="section-title reveal">Everything your institution needs.<br><em>Nothing it doesn't.</em></h2>
+    <p class="section-sub reveal">formsflow.ai is purpose-built for complex workflows. Every feature below is available in your free 30-day trial.</p>
+
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--teal-light)">🤖</div>
+        <h4>Flow-E AI Assistant</h4>
+        <p>Describe a form or workflow in plain English and Flow-E builds it for you. Your administrators don't need to be technical.</p>
+        <span class="feat-tag premium">Premium</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--blue-light)">🖱️</div>
+        <h4>Drag & Drop Form Builder</h4>
+        <p>Conditional fields, file uploads, e-signatures, and multi-language support. Build sophisticated forms in minutes.</p>
+        <span class="feat-tag core">Core</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--amber-light)">🔄</div>
+        <h4>BPMN 2.0 Workflow Engine</h4>
+        <p>Model any approval process — serial, parallel, conditional — with a standards-compliant workflow engine that scales.</p>
+        <span class="feat-tag core">Core</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--teal-light)">🏢</div>
+        <h4>Multi-Tenancy</h4>
+        <p>Each faculty, department, or school gets its own secure workspace. Govern everything from one central admin panel.</p>
+        <span class="feat-tag premium">Premium</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--rose-light)">📊</div>
+        <h4>Built-in Analytics</h4>
+        <p>Real-time dashboards on submission volumes, approval rates, and processing times — with sentiment analysis on open-text responses.</p>
+        <span class="feat-tag premium">Premium</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--blue-light)">🔒</div>
+        <h4>World-Class Security</h4>
+        <p>SSO via Keycloak, OpenID Connect, SAML, and OAuth2. FERPA-compliant data hosting. On-premise or private cloud options.</p>
+        <span class="feat-tag core">Core</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--amber-light)">📦</div>
+        <h4>Form Bundling</h4>
+        <p>Group related forms — application + financial aid + emergency contact — into a single submission experience.</p>
+        <span class="feat-tag premium">Premium</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--teal-light)">🌍</div>
+        <h4>Multilingual Support</h4>
+        <p>Forms in English, French, Spanish, Mandarin, Portuguese, German, and Bulgarian. Reach every family in their language.</p>
+        <span class="feat-tag core">Core</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:var(--rose-light)">🔗</div>
+        <h4>Integrations</h4>
+        <p>Connect to your existing SIS, CRM, ERP, or HRIS. Compatible with Azure, AWS, Camunda, and hundreds more via API.</p>
+        <span class="feat-tag premium">Premium</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works" style="background:var(--white)">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Getting Started</div>
+    <h2 class="section-title reveal">From sign-up to live in <em>24 hours.</em></h2>
+    <p class="section-sub reveal">No lengthy implementations. No consultants required. Your team is in production within a day.</p>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">1</div>
+        <h4>Sign up in 2 minutes</h4>
+        <p>Create your 30-day trial with your work email. No credit card. Your instance is provisioned instantly.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">2</div>
+        <h4>Build with AI or templates</h4>
+        <p>Use Flow-E to describe your form, or choose from 50+ education-specific templates to get started in seconds.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">3</div>
+        <h4>Configure your workflow</h4>
+        <p>Drag and drop your approval stages. Assign roles to reviewers. Set notifications and deadlines — no code needed.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">4</div>
+        <h4>Go live & measure impact</h4>
+        <p>Embed forms on your site, share links with students, and track every submission in your real-time analytics dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + FORM -->
+<section class="cta-section" id="trial-form">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2>Start automating your campus <em>today.</em></h2>
+      <p>Join hundreds of educational institutions that have cut administrative overhead by over 70% with formsflow.ai. Your 30-day trial includes every feature — no limits.</p>
+      <ul class="cta-bullets">
+        <li>Full platform access for 30 days</li>
+        <li>Education-specific form templates included</li>
+        <li>Dedicated onboarding support</li>
+        <li>FERPA-compliant data handling</li>
+        <li>No credit card required</li>
+        <li>Export your data anytime</li>
+      </ul>
+    </div>
+
+    <div class="trial-form">
+      <h3>Start your free trial</h3>
+      <p class="form-sub">30 days, full features, no commitment.</p>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>First name</label>
+          <input type="text" placeholder="Jane" />
+        </div>
+        <div class="form-field">
+          <label>Last name</label>
+          <input type="text" placeholder="Smith" />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Work / Institution email</label>
+        <input type="email" placeholder="jane@university.edu" />
+      </div>
+
+      <div class="form-field">
+        <label>Institution name</label>
+        <input type="text" placeholder="Greenwood University" />
+      </div>
+
+      <div class="form-field">
+        <label>Institution type</label>
+        <select>
+          <option value="">Select type...</option>
+          <option>K-12 School</option>
+          <option>School District / Board</option>
+          <option>Community College</option>
+          <option>University / College</option>
+          <option>Private / Independent School</option>
+          <option>Ed-Tech Company</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label>Your role</label>
+        <select>
+          <option value="">Select role...</option>
+          <option>IT Administrator</option>
+          <option>Registrar / Admissions</option>
+          <option>Operations / Admin Manager</option>
+          <option>Principal / Dean</option>
+          <option>Department Head</option>
+          <option>Finance / HR</option>
+        </select>
+      </div>
+
+      <button class="form-submit">🎓 Activate My Free Trial →</button>
+      <p class="form-note">No credit card. By signing up you agree to our <a href="#">Terms</a> & <a href="#">Privacy Policy</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-box">ff</div>
+      <span class="footer-brand">formsflow.ai</span>
+    </div>
+    <span class="footer-copy">A product of AOT Technologies · © 2025 formsflow.ai · <a href="https://formsflow.ai/privacy-policy/" style="color:inherit">Privacy</a></span>
+  </div>
+</footer>
+
+<script>
+// Segment switching
+function switchSegment(id, btn) {
+  document.querySelectorAll('.seg-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.seg-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  // re-trigger reveal
+  document.querySelectorAll('.seg-panel.active .reveal').forEach(el => {
+    el.classList.remove('visible');
+    setTimeout(() => el.classList.add('visible'), 50);
+  });
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
